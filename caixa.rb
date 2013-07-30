@@ -19,17 +19,13 @@ class Caixa
     tempo = linha.split(' ').last.delete('\n').to_i
     
     if chegada < @tempo_atend
-      # puts chegada < @tempo_atend
       espera = @tempo_atend -chegada
       @tempo_atend += tempo
-      # puts "#{@tempo_atend}"
     else
       @tempo_atend = chegada +tempo
     end
 
     @tempo_cliente = tempo
-
-    # puts espera
     espera
   end
 end
