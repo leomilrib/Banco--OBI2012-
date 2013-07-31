@@ -7,7 +7,7 @@
 
 require './caixa.rb'
 
-def main 
+def main
   entrada = File.readlines("./entrada")
   fila(entrada)
 end

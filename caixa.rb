@@ -17,7 +17,7 @@ class Caixa
     espera = 0
     chegada = linha.split(' ').first.to_i
     tempo = linha.split(' ').last.delete('\n').to_i
-    
+
     if chegada < @tempo_atend
       espera = @tempo_atend -chegada
       @tempo_atend += tempo
