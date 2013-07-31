@@ -10,6 +10,12 @@ require './caixa.rb'
 def main
   entrada = File.readlines("./entrada")
   fila(entrada)
+
+  # entrada = File.readlines("./entrada1")
+  # fila(entrada)
+
+  # entrada = File.readlines("./entrada2")
+  # fila(entrada)
 end
 
 def fila entrada
@@ -19,11 +25,14 @@ def fila entrada
   c = entrada[0].split(' ').first.to_i
   n = entrada[0].split(' ').last.delete('\n').to_i
 
+
+  # inicializa os caixas e coloca os primeiros clientes
   for i in (0...c)
     caixas_abertos.push Caixa.new(entrada[i+1])
   end
 
-  for i in (c+1...n)
+  # começa do segundo cliente e vai ate o ultimo
+  for i in (c+1..n)
     espera = proximo_caixa(caixas_abertos).atender_cliente(entrada[i])
 
     if espera > 20
