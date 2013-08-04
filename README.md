@@ -1,6 +1,7 @@
-
 Banco
+=====
 
+##O problema:
 
 A legislação em vigor obriga os bancos a iniciarem o atendimento a um cliente em no máximo 20 minutos após a entrada do cliente na fila única da agência bancária. A fila é única, assim um caixa livre solicita ao primeiro cliente da fila que venha ao seu guichê para ser atendido. (Vamos ignorar aqui o problema dos clientes prioritários, idosos, gestantes, portadores de necessidades especiais, etc.) Estamos supondo também que nenhum caixa atende dois clientes ao mesmo tempo.
 
@@ -20,68 +21,61 @@ Saída
 
 A saída deverá conter apenas uma linha, contendo um único inteiro, o número de clientes cujo atendimento será iniciado mais do que 20 minutos após sua entrada na fila.
 
-Restrições:
+### Restrições:
 
-  - 1 ≤ C ≤ 10
-  - 1 ≤ N ≤ 1000
-  - 0 ≤ T ≤ 300
-  - 1 ≤ D ≤ 10
+- 1 ≤ C ≤ 10
+- 1 ≤ N ≤ 1000
+- 0 ≤ T ≤ 300
+- 1 ≤ D ≤ 10
 
 
-Exemplo 1:
+###Exemplo 1:
 
--------------------------------------------------------------------
--------------------------------------------------------------------
+####Entrada
 
-Entrada
+1 5  
+0 10  
+0 10  
+1 10  
+2 10  
+30 10
 
- 1 5
- 0 10
- 0 10
- 1 10
- 2 10
- 30 10
-
--------------------------------------------------------------------
-
-Saída
+####Saída
 
 1
 
--------------------------------------------------------------------
--------------------------------------------------------------------
+###Exemplo 2:
 
-Exemplo 2:
+####Entrada
 
--------------------------------------------------------------------
--------------------------------------------------------------------
+3 16  
+0 10  
+0 10  
+0 10  
+3 10  
+5 10  
+7 10  
+11 10  
+13 10  
+14 10  
+15 10  
+16 10  
+17 10  
+18 3  
+19 10  
+20 10  
+23 3  
 
-Entrada
-
- 3 16
- 0 10
- 0 10
- 0 10
- 3 10
- 5 10
- 7 10
- 11 10
- 13 10
- 14 10
- 15 10
- 16 10
- 17 10
- 18 3
- 19 10
- 20 10
- 23 3
-
--------------------------------------------------------------------
-
-Saída
+####Saída
 
 2
 
--------------------------------------------------------------------
--------------------------------------------------------------------
+######Link original do problema _[aqui](http://olimpiada.ic.unicamp.br/pratique/programacao/nivel2/2012f2p2_banco)_
+
+
+##Executando a Solução (Ruby 1.9.3):
+
+1. Descompacte todos os arquivos no mesmo diretório.
+2. Execute via terminal: `ruby banco_das_dad.rb`
+
 
