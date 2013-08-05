@@ -1,58 +1,34 @@
-=begin
-  cada caixa é um objeto que guarda (tempo_cliente, tempo_atend);
-  a definição se o cliente pega fila ou não é dado pelo seu horário de chegada:
-    - se seu horário de chegada for menor do que o menor tempo_atend, sua espera é igual ao tempo_cliente do menor tempo_atend menos seu horário de chegada.
-    - caso contrário, não há espera.
-=end
-
-require './caixa.rb'
+# ----------------------------------------------------------------------------
+# cada caixa é um objeto que guarda (tempo_cliente, tempo_atend);
+# a definição se o cliente pega fila ou não é dado pelo seu horário de chegada:
+#   - se seu horário de chegada for menor do que o menor tempo_atend, sua espera é igual ao tempo_cliente do menor tempo_atend menos seu horário de chegada.
+#   - caso contrário, não há espera.
+# ----------------------------------------------------------------------------
+require './agencia'
 
 def main
+  clientes_insatisfeitos = 0
+
   entrada = File.readlines("./entrada")
-  fila(entrada)
-  # saida esperada 23
-
   # entrada = File.readlines("./entrada1")
-  # fila(entrada)
-  # saida esperada 1
-
   # entrada = File.readlines("./entrada2")
-  # fila(entrada)
-  # saida esperada 2
-end
 
-def fila entrada
-  caixas_abertos = []
-  atendimentos_atrasados = 0
+  c,n = linha_para_array(entrada.shift)
 
-  c = entrada[0].split(' ').first.to_i
-  n = entrada[0].split(' ').last.delete('\n').to_i
+  agencia = Agencia.new(c)
 
-  # inicializa os caixas e coloca os primeiros clientes
-  for i in (0...c)
-    caixas_abertos.push Caixa.new(entrada[i+1])
-  end
+  n.times do
+    cliente = Cliente.new(linha_para_array(entrada.shift))
 
-  # começa do proximo cliente depois de todos os caixas ocupados e vai ate o ultimo
-  for i in (c+1..n)
-    espera = proximo_caixa(caixas_abertos).atender_cliente(entrada[i])
+    espera = agencia.proximo_caixa.atender_cliente(cliente.informacoes)
 
-    if espera > 20
-      atendimentos_atrasados +=1
+    if cliente.cliente_insatisfeito?(espera)
+      clientes_insatisfeitos += 1
     end
+
   end
 
-  puts atendimentos_atrasados
-end
-
-def proximo_caixa caixas
-  caixa = caixas[0]
-  caixas.each do |cx|
-    if cx.tempo_atend < caixa.tempo_atend
-      caixa = cx
-    end
-  end
-  caixa
+  puts clientes_insatisfeitos
 end
 
 main
