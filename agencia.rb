@@ -10,7 +10,7 @@
 #   linha_para_array -> recebe string de entrada e retorna array com duas posições
 # ----------------------------------------------------------
 
-# Tempo maximo definido por lei que um cliente pode esperar para ser atendido
+# Tempo maximo definido que um cliente pode esperar para ser atendido
 TEMPO_MAXIMO_ESPERA = 20
 
 # ------------
@@ -25,29 +25,29 @@ class Agencia
   end
 
   def proximo_caixa
-    caixa = @caixas.min_by { |cx| cx.tempo_ocupado }
-    # caso contrario: warning: assigned but unused variable - caixa
+    caixa = @caixas.min_by { |cx| cx.periodo_ocupado }
+    # caso contrario: "warning: assigned but unused variable - caixa"
     caixa
   end
 
 end
 
 class Caixa
-# @tempo_ocupado => tempo decorrido até terminar o atendimento
-  attr_accessor :tempo_ocupado
+# @periodo_ocupado => tempo até terminar o atendimento
+  attr_accessor :periodo_ocupado
 
   def initialize
-    @tempo_ocupado = 0
+    @periodo_ocupado = 0
   end
 
   def atender_cliente cliente_info
     espera = 0
     chegada,tempo = cliente_info
-    if chegada < @tempo_ocupado
-      espera = @tempo_ocupado - chegada
-      @tempo_ocupado += tempo
+    if chegada < @periodo_ocupado
+      espera = @periodo_ocupado - chegada
+      @periodo_ocupado += tempo
     else
-      @tempo_ocupado = chegada + tempo
+      @periodo_ocupado = chegada + tempo
     end
     espera
   end
